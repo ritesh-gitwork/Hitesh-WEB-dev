@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: #8eaec4;
+  border-radius: 10px;
+  padding: 30px;
+  width: 300px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  color: #ffff;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f1eaec;
+}
+button {
+  background-color: rgb(51, 95, 214);
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+button:hover {
+  background-color: rgb(9, 62, 207);
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
