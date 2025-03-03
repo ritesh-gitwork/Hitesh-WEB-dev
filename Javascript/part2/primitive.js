@@ -5,16 +5,16 @@
 
 // console.log(balance);
 let balance = 120;
-let anotherBalace = new Number();
-// console.log(anothebalace);
+let anotherBalance = new Number(); //its type is object
+// console.log(anotherBalance);
 
 // console.log(typeof balance);
-// console.log(typeof anothebalace);
+// console.log(typeof anotherBalance);
 
 // Undefined and null
 
-let firstname = null;
-let lastname = undefined;
+let firstname = null; //its type is object
+let lastname = undefined; //its type is undefined
 // console.log(firstname);
 // console.log(lastname);
 

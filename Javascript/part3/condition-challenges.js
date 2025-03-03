@@ -21,7 +21,7 @@ if (user == anotherUser) {
   console.log("you can choose this username");
 }
 
-// Checking a varial is number or
+// Checking a variabal is number or not
 
 let score = "hvbh";
 
