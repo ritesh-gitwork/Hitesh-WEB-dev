@@ -31,3 +31,34 @@ Array.prototype.ritesh = function () {
 
 let myArray = [1, 2, 2, 22, 3, 335];
 console.log(myArray.ritesh());
+
+// Creating a class
+/* 
+class Vehicle { //this ia simple class
+
+}
+ */
+
+class Vehicle {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+  start() {
+    return `${this.model} is a car from ${this.make}`;
+  }
+}
+
+class Car extends Vehicle {
+  // constructor is an optional choice
+  drive() {
+    return `${this.make} : this is inheritance example`;
+  }
+}
+
+let myCar = new Car("toyota", "corolla");
+// console.log(myCar.start());
+// console.log(myCar.drive());
+
+let vehOne = new Vehicle("toyota", "corola");
+console.log(vehOne.make);
