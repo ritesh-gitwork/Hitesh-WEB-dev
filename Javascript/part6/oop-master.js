@@ -62,3 +62,107 @@ let myCar = new Car("toyota", "corolla");
 
 let vehOne = new Vehicle("toyota", "corola");
 console.log(vehOne.make);
+
+// Encapsulation
+
+class BankAccount {
+  #balance = 0;
+
+  deposite(amount) {
+    this.#balance += amount;
+    return this.#balance;
+  }
+  getbalance() {
+    return `$ ${this.#balance}`;
+  }
+}
+
+let account = new BankAccount();
+console.log(account.getbalance());
+
+// Abstraction
+
+class coffeMachine {
+  start() {
+    //various process
+    //making coffee
+    return `starting the machine....`;
+  }
+
+  brewMachine() {
+    //complex calculation
+    return `Brewing the coffee..`;
+  }
+  pressStartButton() {
+    let msg1 = this.start();
+    let msg2 = this.brewMachine();
+    return `${msg1} + ${msg2}`;
+  }
+}
+
+let myCoffee = new coffeMachine();
+// console.log(myCoffee.start());
+// console.log(myCoffee.brewMachine());
+
+console.log(myCoffee.pressStartButton());
+
+// Polymorphism
+
+class Bird {
+  fly() {
+    return `flying....`;
+  }
+}
+
+class Penguin extends Bird {
+  fly() {
+    return `Penguin can't fly ...`;
+  }
+}
+
+let bird = new Bird();
+let penguin = new Penguin();
+
+console.log(bird.fly());
+console.log(penguin.fly());
+
+// Static Method
+
+class Calculator {
+  static add(a, b) {
+    return a + b;
+  }
+}
+
+// let miniCalc = new Calculator();
+// console.log(miniCalc.add(2, 3));
+
+console.log(Calculator.add(5, 8));
+
+// Getter Setter
+
+class Employee {
+  #salary;
+  constructor(name, salary) {
+    if (salary < 0) {
+      throw new Error("salary cannot be in negative");
+    }
+    this.name = name;
+    this._salary = salary;
+  }
+
+  get salary() {
+    return `you are not alllowed to see salary`;
+  }
+
+  set salary(value) {
+    if (value < 0) {
+      console.error("invalid salary");
+    } else {
+      this._salary = value;
+    }
+  }
+}
+
+let emp = new Employee("alice", 50000);
+console.log(emp._salary);
