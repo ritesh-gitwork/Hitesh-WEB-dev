@@ -5,3 +5,7 @@ document
     // console.log(paragraph);
     paragraph.textContent = "you have successfully change the paragrapgh";
   });
+
+document
+  .getElementById("highlightFirstCity")
+  .addEventListener("click", function () {});
