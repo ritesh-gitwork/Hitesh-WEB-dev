@@ -49,6 +49,8 @@ class Vehicle {
   }
 }
 
+// Inheritance
+
 class Car extends Vehicle {
   // constructor is an optional choice
   drive() {

@@ -14,11 +14,11 @@ let anotherBalance = new Number(); //its type is object
 // Undefined and null
 
 let firstname = null; //its type is object
-let lastname = undefined; //its type is undefined
-// console.log(firstname);
+let lastname = undefined; //its type is undefStringined
+// console.log(firstname);String
 // console.log(lastname);
 
-// String
+// String// String
 
 let mystr = "healloo";
 let mystr2 = "healloo   worst";

@@ -5,7 +5,7 @@ const userName = {
 };
 userName.lastName = "gupta";
 
-console.log(userName["firstName"]);
+console.log(userName["first Name"]);
 console.log(userName.lastName);
 
 console.log(userName);
