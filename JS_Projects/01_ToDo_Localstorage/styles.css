@@ -16,10 +16,10 @@ body {
 }
 
 .container {
-  background-color: #1e1e1e;
+  background-color: #a15959c9;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -73,6 +73,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 li.completed {
@@ -81,7 +82,7 @@ li.completed {
 }
 
 li button {
-  background-color: #d32f2f;
+  background-color: #af2d2d;
   border: none;
   padding: 5px;
   color: white;
@@ -90,5 +91,5 @@ li button {
 }
 
 li button:hover {
-  background-color: #b71c1c;
+  background-color: #c50a0a;
 }
