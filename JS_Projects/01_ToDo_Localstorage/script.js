@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTaskButton.addEventListener("click", () => {
     const taskText = todoInput.value.trim();
-    // if (taskText === "") return;
+    if (taskText === "") return;
     if (tasks.some((task) => task.text === taskText)) return; // chatgpt same input is not accepted
 
     const newTask = {
@@ -33,12 +33,16 @@ document.addEventListener("DOMContentLoaded", () => {
     li.innerHTML = `<span> ${task.text} </span> <button>delete</button>
      `;
 
+    // if we click on li then complted or line through apears code for this is -
     li.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") return;
-      task.completed = task.completed;
+      task.completed = !task.completed;
       li.classList.toggle("completed");
       saveTasks();
     });
+
+    // button ko click kre tb wo delete na ho jb completed false ho tb
+    //filter se jo task delete hone usi id ko bhi delete krega
 
     li.querySelector("button").addEventListener("click", (e) => {
       e.stopPropagation(); //prevent toggle from firing
@@ -49,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     todoList.appendChild(li);
 
-    // emter button to add task
+    // enter button to add task
     todoInput.addEventListener("keyup", (e) => {
       if (e.key === "Enter") addTaskButton.click();
     });

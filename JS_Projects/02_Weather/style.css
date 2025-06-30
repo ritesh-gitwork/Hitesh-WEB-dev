@@ -16,15 +16,15 @@ body {
 }
 
 .container {
-  background-color: #a15959c9;
+  background-color: #1e1e1e;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -60,36 +60,15 @@ button:hover {
   background-color: #3700b3;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+#weather-info {
+  margin-top: 20px;
 }
 
-li {
-  background-color: #333333;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.hidden {
+  display: none;
 }
 
-li.completed {
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-
-li button {
-  background-color: #af2d2d;
-  border: none;
-  padding: 5px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-li button:hover {
-  background-color: #6d0404;
+#error-message {
+  color: #ff5722;
+  margin-top: 20px;
 }
