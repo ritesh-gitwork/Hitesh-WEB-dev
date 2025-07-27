@@ -1,17 +1,6 @@
-/*_id string pk
-  watchHistory objectId videos
-  username string
-  fullName string
-  avatar string
-  coverImage string
-  password string
-  refreshToken string
-  createdAt Date
-  updatedAt Date
-  */
 import bcrypt from "bcrypt";
 import mongoose, { Schema } from "mongoose";
-import jsonwebtoken from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const userSchema = new Schema(
   {
@@ -29,6 +18,10 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      match: [
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+        "Please fill a valid email address",
+      ],
     },
     fullname: {
       type: String,
@@ -37,11 +30,22 @@ const userSchema = new Schema(
       index: true,
     },
     avatar: {
-      type: String, //cloudnary url
-      required: true,
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
     },
     coverImage: {
-      type: String,
+      public_id: {
+        type: String,
+      },
+      url: {
+        type: String,
+      },
     },
     watchHistory: [
       {
@@ -51,7 +55,7 @@ const userSchema = new Schema(
     ],
     password: {
       type: String,
-      required: [true, "password is required"],
+      required: [true, "Password is required"],
     },
     refreshToken: {
       type: String,
@@ -60,44 +64,60 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-userSchema.pre("save", function (next) {
+// Pre-save hook to hash password
+userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
-  this.password = bcrypt.hash(this.password, 10);
+  try {
+    this.password = await bcrypt.hash(this.password, 10);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
 });
 
+// Compare password method
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// Access token generator
 userSchema.methods.generateAccessToken = function () {
-  // short lived access token
-  return (
-    jwt.sign(
-      {
-        _id: this._id,
-        email: this.email,
-        username: this.username,
-      },
-      process.env.ACCESS_TOKEN_SECRET
-    ),
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      username: this.username,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
   );
 };
 
+// Refresh token generator
 userSchema.methods.generateRefreshToken = function () {
-  // short lived access token
-  return (
-    jwt.sign(
-      {
-        _id: this._id,
-        email: this.email,
-        username: this.username,
-      },
-      process.env.REFRESH_TOKEN_SECRET
-    ),
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      username: this.username,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+    }
   );
 };
+
+// Hide sensitive data from API response
+userSchema.set("toJSON", {
+  transform: function (doc, ret) {
+    delete ret.password;
+    delete ret.refreshToken;
+    return ret;
+  },
+});
 
 export const User = mongoose.model("User", userSchema);

@@ -3,15 +3,26 @@ import { DB_NAME } from "../constants.js";
 
 const connectDB = async () => {
   try {
+    if (!process.env.MONGO_URI) {
+      throw new Error("MONGO_URI is not defined in environment variables");
+    }
+
     const connectionInstance = await mongoose.connect(
-      `${process.env.MONGO_URI}/${DB_NAME}`
+      `${process.env.MONGO_URI}/${DB_NAME}`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // autoIndex: false, // for production (optional)
+        // serverSelectionTimeoutMS: 5000,
+      }
     );
+
     console.log(
-      `\n MongoDB connected ! DB host: ${connectionInstance.connection.host} `
+      `✅ MongoDB connected | Host: ${connectionInstance.connection.host}`
     );
   } catch (error) {
-    console.log("MongoDb connection error", error);
-    process.exit(1);
+    console.error("❌ MongoDB connection error:", error.message);
+    process.exit(1); // Exit the process with failure
   }
 };
 

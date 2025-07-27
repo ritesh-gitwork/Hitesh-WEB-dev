@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-//CONFIGURATION
+// CONFIGURATION
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -13,27 +13,40 @@ cloudinary.config({
 
 const uploadonCloudinary = async (localFilePath) => {
   try {
-    console.log("initial error");
+    console.log("Uploading to Cloudinary...");
 
     if (!localFilePath) return null;
+
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
-    console.log("File upload on cloudinary File Src:" + response.url);
-    // Once the file is uploaded , we would like to delete it from our server
-    fs.unlinkSync(localFilePath);
+
+    console.log("File uploaded to Cloudinary:", response.url);
+
+    if (fs.existsSync(localFilePath)) {
+      fs.unlinkSync(localFilePath);
+    }
+
     return response;
   } catch (error) {
-    fs.unlinkSync(localFilePath);
+    console.error("Cloudinary Upload Error:", error);
+    if (fs.existsSync(localFilePath)) {
+      fs.unlinkSync(localFilePath);
+    }
     return null;
   }
 };
 
 const deleteFromCloudinary = async (publicId) => {
   try {
-    console.log("Deleted from cloudinary. PUblic id");
+    const result = await cloudinary.uploader.destroy(publicId, {
+      resource_type: "image",
+    });
+    console.log("Deleted from Cloudinary. Public ID:", publicId);
+    return result;
   } catch (error) {
-    console.log("Error deleting from cloudinary", error);
+    console.error("Error deleting from Cloudinary:", error);
+    return null;
   }
 };
 

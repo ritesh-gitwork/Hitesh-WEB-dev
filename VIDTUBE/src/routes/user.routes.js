@@ -21,4 +21,9 @@ router.route("/register").post(
   registerUser
 );
 
+// // Optional test route
+// router.get("/healthcheck", (req, res) => {
+//   res.status(200).json({ success: true, message: "User route is working 🚀" });
+// });
+
 export default router;
