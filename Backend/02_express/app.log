@@ -1,0 +1,6 @@
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"5.095\"}","timestamp":"2025-07-13T19:28:21.299Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"0.577\"}","timestamp":"2025-07-13T19:28:41.368Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"0.421\"}","timestamp":"2025-07-13T19:28:45.286Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"0.905\"}","timestamp":"2025-07-13T19:29:00.835Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"0.677\"}","timestamp":"2025-07-13T19:29:02.761Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST\",\"url\":\"/addProduct\",\"status\":\"200\",\"responseTime\":\"0.359\"}","timestamp":"2025-07-13T19:29:04.352Z"}
